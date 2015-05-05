@@ -1,0 +1,21 @@
+
+tile.defeatedcrow.showcaseBlock.name=ショーケースブロック
+tile.defeatedcrow.seasonShopBlock.name=季節ショップモニター
+
+item.defeatedcrow.mpCard.name=MPプリカ
+
+dcshowcase.message.show_owner=オーナー : 
+dcshowcase.message.show_mode=モード : 
+dcshowcase.message.change_mode=モードを変更しました : 
+dcshowcase.message.register_null=何も持っていません
+dcshowcase.message.register_notforsale=このアイテムは非売品です
+dcshowcase.message.register_item=販売アイテムを登録しました : 
+dcshowcase.message.cancel_item=販売を取り消しました : 
+dcshowcase.message.current_null=何も入っていません
+dcshowcase.message.current_item=販売中 : 
+dcshowcase.message.bought_item=アイテムを購入しました : 
+dcshowcase.message.bought_youritem= さんがあなたのアイテムを購入しました : 
+dcshowcase.message.bought_cancel=MPが不足しています
+dcshowcase.message.bought_villager=村人があなたのアイテムを購入しました : 
+dcshowcase.message.load_mp=MPを引き出しました : 
+dcshowcase.message.check_mp=あなたのMP : 

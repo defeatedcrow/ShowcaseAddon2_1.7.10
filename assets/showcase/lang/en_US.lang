@@ -1,0 +1,21 @@
+
+tile.defeatedcrow.showcaseBlock.name=Showcase Block
+tile.defeatedcrow.seasonShopBlock.name=Seasons Shop Monitor
+
+item.defeatedcrow.mpCard.name=MP Card
+
+dcshowcase.message.show_owner=Block Owner : 
+dcshowcase.message.show_mode=Mode : 
+dcshowcase.message.change_mode=Change Mode : 
+dcshowcase.message.register_null=You hold nothing for registering.
+dcshowcase.message.register_notforsale=This item cannot be sold.
+dcshowcase.message.register_item=Registered the sell item : 
+dcshowcase.message.cancel_item=Canceled the sell item : 
+dcshowcase.message.current_null=Nothing on sell.
+dcshowcase.message.current_item=Now on sell : 
+dcshowcase.message.bought_item=Bought the item : 
+dcshowcase.message.bought_youritem= Bought your item : 
+dcshowcase.message.bought_cancel=You have not enough MP.
+dcshowcase.message.bought_villager=Villager bought your item : 
+dcshowcase.message.load_mp=Drawn out your MP : 
+dcshowcase.message.check_mp=Your MP : 

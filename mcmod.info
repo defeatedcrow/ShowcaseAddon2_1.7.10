@@ -1,0 +1,16 @@
+[
+{
+  "modid": "DCsShowcase",
+  "name": "ShowcaseAddon2_forMCEconomy2",
+  "description": "Support player's trading with MCE2.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://defeatedcrow.wiki.fc2.com/wiki/ShowcaseAddon2",
+  "updateUrl": "",
+  "authorList": ["defeatedcrow"],
+  "credits": "defeatedcrow",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["MCEconomy2", "MinecraftForge1.7.1-10.13.2.1291+"]
+}
+]
