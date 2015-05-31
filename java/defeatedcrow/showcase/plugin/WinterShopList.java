@@ -3,11 +3,13 @@ package defeatedcrow.showcase.plugin;
 import java.util.ArrayList;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.IProductItem;
 import shift.mceconomy2.api.shop.ProductItem;
 import shift.mceconomy2.api.shop.ProductList;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * 冬のショップ。
@@ -34,6 +36,11 @@ public class WinterShopList extends ProductList {
 		thisProducts.add(new ProductItem(new ItemStack(Blocks.packed_ice, 1, 5), 200));
 		thisProducts.add(new ProductItem(new ItemStack(Blocks.snow, 1, 1), 100));
 		thisProducts.add(new ProductItem(new ItemStack(Blocks.mycelium, 1, 0), 500));
+
+		Item crop = GameRegistry.findItem("DCsAppleMilk", "defeatedcrow.leafTea");
+		if (crop != null) {
+			thisProducts.add(new ProductItem(new ItemStack(crop, 1, 4), 200));
+		}
 	}
 
 	@Override

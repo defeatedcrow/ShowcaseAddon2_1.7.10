@@ -30,7 +30,7 @@ import defeatedcrow.showcase.plugin.WinterShopList;
 @Mod(
 		modid = "DCsShowcase",
 		name = "ShowcaseAddon2",
-		version = "1.7.10_beta",
+		version = "1.7.10_beta3",
 		dependencies = "required-after:Forge@[10.13.2.1291,);required-after:mceconomy2;after:DCsAppleMilk;after:SextiarySector")
 public class ShowcaseCore {
 
