@@ -30,7 +30,7 @@ import defeatedcrow.showcase.plugin.WinterShopList;
 @Mod(
 		modid = "DCsShowcase",
 		name = "ShowcaseAddon2",
-		version = "1.7.10_beta3",
+		version = "1.7.10_beta4",
 		dependencies = "required-after:Forge@[10.13.2.1291,);required-after:mceconomy2;after:DCsAppleMilk;after:SextiarySector")
 public class ShowcaseCore {
 
@@ -64,7 +64,7 @@ public class ShowcaseCore {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
-		(new Config()).load(cfg);
+		(new ShowcaseConfig()).load(cfg);
 
 		registerMaterials();
 		registerRecipes();
@@ -105,6 +105,8 @@ public class ShowcaseCore {
 		if (Loader.isModLoaded("SextiarySector")) {
 			this.SS2Loaded = true;
 		}
+
+		ShowcaseConfig.addMP();
 	}
 
 	static void registerRecipes() {
