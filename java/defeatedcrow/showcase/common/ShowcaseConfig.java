@@ -12,6 +12,40 @@ public class ShowcaseConfig {
 	private final String BR = System.getProperty("line.separator");
 
 	public static String[] mpList = { "DCsAppleMilk:defeatedcrow.clam:0:50" };
+	public static String[] springShop = {
+			"minecraft:sapling:3:250",
+			"minecraft:waterlily:0:100",
+			"minecraft:vine:0:50",
+			"minecraft:melon_seeds:0:200",
+			"minecraft:dye:3:200",
+			"DCsAppleMilk:defeatedcrow.saplingTea:0:50",
+			"DCsAppleMilk:defeatedcrow.leafTea:3:200"
+	};
+	public static String[] summerShop = {
+			"minecraft:sapling:4:250",
+			"minecraft:cactus:0:100",
+			"minecraft:reeds:0:50",
+			"minecraft:dye:0:50",
+			"minecraft:double_plant:0:100",
+			"DCsAppleMilk:defeatedcrow.clam:0:50",
+			"DCsAppleMilk:defeatedcrow.leafTea:1:500"
+	};
+	public static String[] autumnShop = {
+			"minecraft:sapling:2:250",
+			"minecraft:sapling:5:250",
+			"minecraft:dirt:2:100",
+			"minecraft:pumpkin_seeds:0:10",
+			"minecraft:double_plant:4:100",
+			"minecraft:double_plant:5:100",
+			"DCsAppleMilk:defeatedcrow.leafTea:2:200"
+	};
+	public static String[] winterShop = {
+			"minecraft:sapling:1:250",
+			"minecraft:packed_ice:5:200",
+			"minecraft:snow:1:100",
+			"minecraft:mycelium:500",
+			"DCsAppleMilk:defeatedcrow.leafTea:4:200"
+	};
 	public static boolean spIsOp = false;
 	public static boolean requireGF = true;
 
@@ -28,6 +62,18 @@ public class ShowcaseConfig {
 
 			spIsOp = cfg.getBoolean("spIsOP", "general", false, "Determines if the player in single player is always considered an OP. Only use for making maps.");
 			requireGF = cfg.getBoolean("shopsRequireGF", "general", true, "Determines if shops need GF if SextiarySector2 is present.");
+
+			cfg.setCategoryComment("seasonshop", "Configure inventories for the seasonal shop." + BR
+					+ "\"ModID:RegisteredName:metadata:price\"");
+
+			Property springShopP = cfg.get("seasonshop", "spring", springShop);
+			springShop = springShopP.getStringList();
+			Property summerShopP = cfg.get("seasonshop", "summer", summerShop);
+			summerShop = summerShopP.getStringList();
+			Property autumnShopP = cfg.get("seasonshop", "autumn", autumnShop);
+			autumnShop = autumnShopP.getStringList();
+			Property winterShopP = cfg.get("seasonshop", "winter", winterShop);
+			winterShop = winterShopP.getStringList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
