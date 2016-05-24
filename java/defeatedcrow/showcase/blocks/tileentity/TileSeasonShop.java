@@ -1,5 +1,6 @@
 package defeatedcrow.showcase.blocks.tileentity;
 
+import defeatedcrow.showcase.common.ShowcaseConfig;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -36,7 +37,7 @@ public class TileSeasonShop extends TileEntity implements IGearForceHandler {
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeToNBT(par1NBTTagCompound);
-		par1NBTTagCompound.setShort("CarrentGF", this.currentGF);
+		par1NBTTagCompound.setShort("CurrentGF", this.currentGF);
 		par1NBTTagCompound.setShort("CoolTime", this.cooltime);
 		par1NBTTagCompound.setBoolean("Active", this.active);
 	}
@@ -104,7 +105,7 @@ public class TileSeasonShop extends TileEntity implements IGearForceHandler {
 	}
 
 	public boolean isActive() {
-		return active || !ShowcaseCore.SS2Loaded;
+		return active || !(ShowcaseCore.SS2Loaded && ShowcaseConfig.requireGF);
 	}
 
 	/* plugin for SextiarySector2 */

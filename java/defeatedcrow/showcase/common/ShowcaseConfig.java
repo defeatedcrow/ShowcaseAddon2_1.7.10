@@ -13,6 +13,7 @@ public class ShowcaseConfig {
 
 	public static String[] mpList = { "DCsAppleMilk:defeatedcrow.clam:0:50" };
 	public static boolean spIsOp = false;
+	public static boolean requireGF = true;
 
 	public void load(Configuration cfg) {
 		try {
@@ -26,6 +27,7 @@ public class ShowcaseConfig {
 			mpList = mpListP.getStringList();
 
 			spIsOp = cfg.getBoolean("spIsOP", "general", false, "Determines if the player in single player is always considered an OP. Only use for making maps.");
+			requireGF = cfg.getBoolean("shopsRequireGF", "general", true, "Determines if shops need GF if SextiarySector2 is present.");
 
 		} catch (Exception e) {
 			e.printStackTrace();
