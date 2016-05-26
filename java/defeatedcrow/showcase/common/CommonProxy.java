@@ -39,6 +39,8 @@ public class CommonProxy {
 					SCLogger.debugInfo("Server OP was detected. " + op);
 				return true;
 			}
+		} else {
+			return ShowcaseConfig.spIsOp;
 		}
 		return false;
 	}

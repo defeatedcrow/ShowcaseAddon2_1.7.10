@@ -34,7 +34,7 @@ public class BlockShowcase extends BlockContainer {
 
 	protected Random rand = new Random();
 
-	private String[] modeName = new String[] { "Public", "Private", "Villager", "Display-only" };
+	private String[] modeName = new String[] { "Public", "Private", "Villager", "Display-only", "Permanent Shop" };
 
 	public BlockShowcase() {
 		super(Material.clay);
@@ -109,7 +109,7 @@ public class BlockShowcase extends BlockContainer {
 
 								player.addChatMessage(MessageUtil.ItemCancel(ret));
 
-							} else if (mode < 2) { // 購入
+							} else if (mode != 3) { // 購入
 								int require = MPChecker.getSellMP(sellItem);
 								int playerMP = MPChecker.PlayerMP(player);
 
@@ -120,14 +120,18 @@ public class BlockShowcase extends BlockContainer {
 									int get = MCEconomyAPI.reducePlayerMP(player, require, false);
 									this.dropSellItem(world, player, ret);
 
-									tile.getInv().setInventorySlotContents(1, (ItemStack) null);
-									tile.addMP(require);
+									if (mode != 4) {
+										tile.getInv().setInventorySlotContents(1, (ItemStack) null);
+										tile.addMP(require);
+									}
 
 									player.addChatMessage(MessageUtil.boughtItem(sellItem, currentOwner));
 
-									EntityPlayer ownerPlayer = world.getPlayerEntityByName(currentOwner);
-									if (ownerPlayer != null) {
-										ownerPlayer.addChatMessage(MessageUtil.boughtYourItem(sellItem, name));
+									if (mode != 4) {
+										EntityPlayer ownerPlayer = world.getPlayerEntityByName(currentOwner);
+										if (ownerPlayer != null) {
+											ownerPlayer.addChatMessage(MessageUtil.boughtYourItem(sellItem, name));
+										}
 									}
 
 									tile.markDirty();
@@ -188,7 +192,7 @@ public class BlockShowcase extends BlockContainer {
 							player.addChatMessage(MessageUtil.ItemCancel(ret));
 						} else { // モード変更
 							int next = mode + 1;
-							if (next > 3)
+							if (next > 4)
 								next = 0;
 							tile.setMode(next);
 							player.addChatMessage(MessageUtil.modeChange(modeName[next]));
