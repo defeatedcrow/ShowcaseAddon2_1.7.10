@@ -25,6 +25,13 @@ public class MessageUtil {
 		return new ChatComponentText(text);
 	}
 
+	public static ChatComponentText shop(String shop) {
+		String text = StatCollector.translateToLocal("dcshowcase.message.show_shop") + shop;
+		if (ShowcaseCore.debugMode)
+			SCLogger.debugInfo(text);
+		return new ChatComponentText(text);
+	}
+
 	/* モードを変更しました */
 	public static ChatComponentText modeChange(String mode) {
 		String text = StatCollector.translateToLocal("dcshowcase.message.change_mode") + mode;
@@ -127,6 +134,36 @@ public class MessageUtil {
 	/* あなたの保有MP */
 	public static ChatComponentText checkMP(int mp) {
 		String text = StatCollector.translateToLocal("dcshowcase.message.check_mp") + mp + "MP";
+		if (ShowcaseCore.debugMode)
+			SCLogger.debugInfo(text);
+		return new ChatComponentText(text);
+	}
+
+	public static ChatComponentText customInvalid(String shop, boolean cleared) {
+		String text = StatCollector.translateToLocalFormatted("dcshowcase.message.custom_invalid", shop);
+		if (cleared)
+			text += StatCollector.translateToLocal("dcshowcase.message.custom_cleared");
+		if (ShowcaseCore.debugMode)
+			SCLogger.debugInfo(text);
+		return new ChatComponentText(text);
+	}
+
+	public static ChatComponentText customSet(String shop) {
+		String text = StatCollector.translateToLocal("dcshowcase.message.custom_set") + shop;
+		if (ShowcaseCore.debugMode)
+			SCLogger.debugInfo(text);
+		return new ChatComponentText(text);
+	}
+
+	public static ChatComponentText customLocked() {
+		String text = StatCollector.translateToLocal("dcshowcase.message.custom_locked");
+		if (ShowcaseCore.debugMode)
+			SCLogger.debugInfo(text);
+		return new ChatComponentText(text);
+	}
+
+	public static ChatComponentText customEmpty(String shop) {
+		String text = StatCollector.translateToLocalFormatted("dcshowcase.message.custom_empty", shop);
 		if (ShowcaseCore.debugMode)
 			SCLogger.debugInfo(text);
 		return new ChatComponentText(text);

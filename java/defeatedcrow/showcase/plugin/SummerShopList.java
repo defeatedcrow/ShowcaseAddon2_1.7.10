@@ -17,7 +17,7 @@ public class SummerShopList extends BaseShopList {
 	@Override
 	public void load() {
 		thisShopId = MCEconomyAPI.registerProductList(this);
-		this.registerProducts(ShowcaseConfig.summerShop);
+		ShowcaseConfig.registerProducts(this, ShowcaseConfig.summerShop);
 	}
 
 	@Override

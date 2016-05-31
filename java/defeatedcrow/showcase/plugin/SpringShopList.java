@@ -17,7 +17,7 @@ public class SpringShopList extends BaseShopList {
 	@Override
 	public void load() {
 		thisShopId = MCEconomyAPI.registerProductList(this);
-		this.registerProducts(ShowcaseConfig.springShop);
+		ShowcaseConfig.registerProducts(this, ShowcaseConfig.springShop);
 	}
 
 	@Override
