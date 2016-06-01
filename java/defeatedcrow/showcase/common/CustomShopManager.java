@@ -13,7 +13,11 @@ import defeatedcrow.showcase.client.CustomIcon;
 import defeatedcrow.showcase.items.ItemMPCard;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.io.File;
 import java.util.HashMap;
@@ -48,6 +52,13 @@ public class CustomShopManager {
                 CreativeTabs.tabDecorations);
 
         GameRegistry.registerBlock(classicShop, "defeatedcrow.classicCustomShopBlock");
+        
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(classicShop, 1, 0), new Object[] { " X ", "XYX",
+                "XZX", 'X', new ItemStack(Items.iron_ingot), 'Y', new ItemStack(Blocks.crafting_table), 'Z',
+                new ItemStack(Blocks.redstone_torch) }));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(classicShop, 1, 0), new Object[] { " X ", "XYX",
+                "XZX", 'X', "ingotIron", 'Y', new ItemStack(Blocks.crafting_table), 'Z', new ItemStack(Blocks.redstone_torch) }));
     }
 
     public static void load() {
