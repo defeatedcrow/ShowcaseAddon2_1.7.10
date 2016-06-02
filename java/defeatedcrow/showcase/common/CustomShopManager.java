@@ -21,6 +21,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.TreeSet;
 
 /**
  * Created by Belgabor on 28.05.2016.
@@ -40,11 +41,16 @@ public class CustomShopManager {
             CustomIcon.init();
         LanguageManager.init();
 
+        // Ensure files are sorted. listFiles only returns sorted file names on Windows
+        TreeSet<String> sorted = new TreeSet<String>();
         for(File file : configFolder.listFiles()) {
             if (!file.getName().endsWith(".cfg"))
                 continue;
-
-            CustomShopData shop = new CustomShopData(file);
+            sorted.add(file.getName());
+        }
+        
+        for(String filename : sorted) {
+            CustomShopData shop = new CustomShopData(new File(configFolder, filename));
             shops.put(shop.tag, shop);
         }
 
