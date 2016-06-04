@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class ItemCustomShopCard extends Item {
     public void addInformation(ItemStack item, EntityPlayer player, List list,
                                boolean par4) {
         super.addInformation(item, player, list, par4);
-        list.add("Shop : " + owner.name);
+        list.add("Shop : " + StatCollector.translateToLocal(owner.name));
         if (ShowcaseCore.proxy.isShiftKeyDown() && ShowcaseCore.proxy.getOP(player.getCommandSenderName())) {
             list.add("Tag : " + tag);
         }

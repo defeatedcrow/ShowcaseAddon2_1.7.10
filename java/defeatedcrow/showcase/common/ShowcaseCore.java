@@ -2,6 +2,7 @@ package defeatedcrow.showcase.common;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -89,6 +90,7 @@ public class ShowcaseCore {
 		proxy.registerRenderers();
 
 		FMLCommonHandler.instance().bus().register(new OnCraftingEvent());
+		FMLInterModComms.sendMessage("Waila", "register", "defeatedcrow.showcase.plugin.WailaHandler.callbackRegister");
 	}
 
 	static void registerMaterials() {

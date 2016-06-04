@@ -26,3 +26,5 @@ dcshowcase.message.custom_cleared= Cleared.
 dcshowcase.message.custom_set=Set shop to 
 dcshowcase.message.custom_locked=Shop is locked.
 dcshowcase.message.custom_empty=Shop sells no items (%s).
+
+dcshowcase.replacetitle.waila=Replace Custom Shop Title
