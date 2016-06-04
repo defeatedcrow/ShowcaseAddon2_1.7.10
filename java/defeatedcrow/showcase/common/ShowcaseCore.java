@@ -1,5 +1,8 @@
 package defeatedcrow.showcase.common;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -42,6 +45,8 @@ public class ShowcaseCore {
 	@Instance("ShowcaseCore")
 	public static ShowcaseCore instance;
 
+	public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
 	public static boolean debugMode = false;
 
 	// showcase
@@ -66,6 +71,10 @@ public class ShowcaseCore {
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
 		(new ShowcaseConfig()).load(cfg);
 
+		if (ShowcaseConfig.customShops) {
+			CustomShopManager.init(event);
+		}
+
 		registerMaterials();
 		registerRecipes();
 
@@ -81,6 +90,7 @@ public class ShowcaseCore {
 		proxy.registerRenderers();
 
 		FMLCommonHandler.instance().bus().register(new OnCraftingEvent());
+		FMLInterModComms.sendMessage("Waila", "register", "defeatedcrow.showcase.plugin.WailaHandler.callbackRegister");
 	}
 
 	static void registerMaterials() {
@@ -107,6 +117,10 @@ public class ShowcaseCore {
 		}
 
 		ShowcaseConfig.addMP();
+
+		if (ShowcaseConfig.customShops) {
+			CustomShopManager.load();
+		}
 	}
 
 	static void registerRecipes() {

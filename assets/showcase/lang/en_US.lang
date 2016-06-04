@@ -1,11 +1,13 @@
 
 tile.defeatedcrow.showcaseBlock.name=Showcase Block
 tile.defeatedcrow.seasonShopBlock.name=Seasons Shop Monitor
+tile.defeatedcrow.classicCustomShopBlock.name=Classic Custom Shop Monitor
 
 item.defeatedcrow.mpCard.name=MP Card
 
 dcshowcase.message.show_owner=Block Owner : 
 dcshowcase.message.show_mode=Mode : 
+dcshowcase.message.show_shop=Shop : 
 dcshowcase.message.change_mode=Change Mode : 
 dcshowcase.message.register_null=You hold nothing for registering.
 dcshowcase.message.register_notforsale=This item cannot be sold.
@@ -19,3 +21,10 @@ dcshowcase.message.bought_cancel=You have not enough MP.
 dcshowcase.message.bought_villager=Villager bought your item : 
 dcshowcase.message.load_mp=Drawn out your MP : 
 dcshowcase.message.check_mp=Your MP : 
+dcshowcase.message.custom_invalid=Shop is invalid (%s).
+dcshowcase.message.custom_cleared= Cleared.
+dcshowcase.message.custom_set=Set shop to 
+dcshowcase.message.custom_locked=Shop is locked.
+dcshowcase.message.custom_empty=Shop sells no items (%s).
+
+dcshowcase.replacetitle.waila=Replace Custom Shop Title

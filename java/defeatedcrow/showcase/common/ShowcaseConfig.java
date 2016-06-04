@@ -7,9 +7,10 @@ import net.minecraftforge.common.config.Property;
 import shift.mceconomy2.api.MCEconomyAPI;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ShowcaseConfig {
+public class ShowcaseConfig implements IProductRegister {
+	private static ShowcaseConfig instance;
 
-	private final String BR = System.getProperty("line.separator");
+	public static final String BR = System.getProperty("line.separator");
 
 	public static String[] mpList = { "DCsAppleMilk:defeatedcrow.clam:0:50" };
 	public static String[] springShop = {
@@ -48,6 +49,11 @@ public class ShowcaseConfig {
 	};
 	public static boolean spIsOp = false;
 	public static boolean requireGF = true;
+	public static boolean customShops = false;
+
+	public ShowcaseConfig() {
+		instance = this;
+	}
 
 	public void load(Configuration cfg) {
 		try {
@@ -62,6 +68,7 @@ public class ShowcaseConfig {
 
 			spIsOp = cfg.getBoolean("spIsOP", "general", false, "Determines if the player in single player is always considered an OP. Only use for making maps.");
 			requireGF = cfg.getBoolean("shopsRequireGF", "general", true, "Determines if shops need GF if SextiarySector2 is present.");
+			customShops = cfg.getBoolean("customShops", "general", false, "Enables custom shops.");
 
 			cfg.setCategoryComment("seasonshop", "Configure inventories for the seasonal shop." + BR
 					+ "\"ModID:RegisteredName:metadata:price\"");
@@ -84,7 +91,11 @@ public class ShowcaseConfig {
 	}
 
 	static void addMP() {
-		for (String name : mpList) {
+		registerProducts(instance, mpList);
+	}
+
+	public static void registerProducts(IProductRegister register, String[] list) {
+		for (String name : list) {
 			if (name.contains(":")) {
 				String[] split = name.split(":");
 				ItemStack input = null;
@@ -99,16 +110,34 @@ public class ShowcaseConfig {
 							input = new ItemStack(item, 1, m);
 					}
 				} catch (Exception e) {
-					SCLogger.logger.info("Failed to register price to new item: " + name);
+					register.logProductRegisterFail(name);
 				}
 
 				if (input != null) {
-					MCEconomyAPI.addPurchaseItem(input, price);
-					SCLogger.logger.info("Registered new price to item: " + input.toString() + " : " + split[3]);
+					register.doProductRegister(input, price);
+					register.logProductRegisterSuccess(input.toString() + " : " + split[3]);
 				} else {
-					SCLogger.logger.info("Failed to register price to new item: null item");
+					register.logProductRegisterFail("null item");
 				}
 			}
 		}
+	}
+
+	@Override
+	public void logProductRegisterSuccess(String logItem) {
+		SCLogger.logger.info("Registered new price to item: " + logItem);
+	}
+
+	@Override
+	public void logProductRegisterFail(String logItem) {
+		SCLogger.logger.info("Failed to register price to new item: " + logItem);
+	}
+
+	@Override
+	public void doProductRegister(Object item, int price) {
+		if (item instanceof String)
+			MCEconomyAPI.addPurchaseItem((String) item, price);
+		else if (item instanceof ItemStack)
+			MCEconomyAPI.addPurchaseItem((ItemStack) item, price);
 	}
 }

@@ -1,5 +1,6 @@
 package defeatedcrow.showcase.common;
 
+import defeatedcrow.showcase.blocks.tileentity.TileClassicCustomShop;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -17,6 +18,8 @@ public class CommonProxy {
 	public void registerTileEntity() {
 		GameRegistry.registerTileEntity(TileShowcase.class, "tileShowcase");
 		GameRegistry.registerTileEntity(TileSeasonShop.class, "tileSeasonShop");
+		if (ShowcaseConfig.customShops)
+			GameRegistry.registerTileEntity(TileClassicCustomShop.class, "tileClassicCustomShop");
 	}
 
 	public int getRenderID() {
