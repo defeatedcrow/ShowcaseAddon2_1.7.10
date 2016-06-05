@@ -12,6 +12,7 @@ public class ShowcaseConfig {
 	private final String BR = System.getProperty("line.separator");
 
 	public static String[] mpList = { "DCsAppleMilk:defeatedcrow.clam:0:50" };
+	public static boolean spIsOp = false;
 
 	public void load(Configuration cfg) {
 		try {
@@ -24,10 +25,13 @@ public class ShowcaseConfig {
 
 			mpList = mpListP.getStringList();
 
+			spIsOp = cfg.getBoolean("spIsOP", "general", false, "Determines if the player in single player is always considered an OP. Only use for making maps.");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			cfg.save();
+			if (cfg.hasChanged())
+				cfg.save();
 		}
 	}
 

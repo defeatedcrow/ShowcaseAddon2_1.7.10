@@ -1,5 +1,6 @@
 package defeatedcrow.showcase.client;
 
+import defeatedcrow.showcase.common.ShowcaseConfig;
 import net.minecraft.world.World;
 
 import org.lwjgl.input.Keyboard;
@@ -41,7 +42,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public boolean getOP(String name) {
-		return false;
+		return  ShowcaseConfig.spIsOp;
 	}
 
 }
