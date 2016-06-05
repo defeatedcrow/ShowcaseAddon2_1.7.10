@@ -34,7 +34,12 @@ public class BlockShowcase extends BlockContainer {
 
 	protected Random rand = new Random();
 
-	private String[] modeName = new String[] { "Public", "Private", "Villager", "Display-only", "Permanent Shop" };
+	private String[] modeName = new String[] {
+			"Public",
+			"Private",
+			"Villager",
+			"Display-only",
+			"Permanent Shop" };
 
 	public BlockShowcase() {
 		super(Material.clay);
@@ -74,21 +79,23 @@ public class BlockShowcase extends BlockContainer {
 				 * sneak : 取り下げ <br>
 				 * == 紙 : MPロード <br>
 				 * == それ以外 : 中身がある　->　登録アイテム確認　/　中身がnull　->　販売アイテム投入
-				 * 
 				 * Ownerでない場合 <br>
 				 * currentItem == null : 登録アイテム確認 / mode・オーナー情報確認 <br>
 				 * sneak : 購入<br>
 				 * == 紙 : MPロード
-				 * 
 				 * ServerOPの場合<br>
 				 * == RStorch : mode変更 / 強制取り下げ<br>
 				 */
 
-				if (current == null) {
+				if (current == null) { // Empty
 					if (player.isSneaking()) { // sneaking
 						if (sellItem == null) { // no item
 							player.addChatMessage(MessageUtil.noItem());
 
+							/*
+							 * On debug mode:
+							 * Player can force change the owner of this block.
+							 */
 							if (ShowcaseCore.debugMode) {
 								tile.setBlockOwner(name);
 								tile.setBlockOwnerID(id.toString());
@@ -200,7 +207,7 @@ public class BlockShowcase extends BlockContainer {
 						}
 					} else if (isOwner) { // モード変更
 						int next = mode + 1;
-						if (next > 3)
+						if (next > 4)
 							next = 0;
 						tile.setMode(next);
 						player.addChatMessage(MessageUtil.modeChange(modeName[next]));

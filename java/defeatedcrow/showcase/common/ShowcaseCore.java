@@ -1,8 +1,5 @@
 package defeatedcrow.showcase.common;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -11,6 +8,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -18,6 +19,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -33,7 +35,7 @@ import defeatedcrow.showcase.plugin.WinterShopList;
 @Mod(
 		modid = "DCsShowcase",
 		name = "ShowcaseAddon2",
-		version = "1.7.10_beta4",
+		version = "1.7.10_beta5",
 		dependencies = "required-after:Forge@[10.13.2.1291,);required-after:mceconomy2;after:DCsAppleMilk;after:SextiarySector")
 public class ShowcaseCore {
 
@@ -124,20 +126,49 @@ public class ShowcaseCore {
 	}
 
 	static void registerRecipes() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(showcaseBlock, 1, 0), new Object[] { "XXX", "XZX",
-				"YYY", 'X', new ItemStack(Blocks.glass), 'Y', new ItemStack(Items.iron_ingot), 'Z',
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(showcaseBlock, 1, 0), new Object[] {
+				"XXX",
+				"XZX",
+				"YYY",
+				'X',
+				new ItemStack(Blocks.glass),
+				'Y',
+				new ItemStack(Items.iron_ingot),
+				'Z',
 				new ItemStack(Blocks.carpet, 1, 32767) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(showcaseBlock, 1, 0),
-				new Object[] { "XXX", "XZX", "YYY", 'X', new ItemStack(Blocks.glass), 'Y', "ingotIron", 'Z',
-						new ItemStack(Blocks.carpet, 1, 32767) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(showcaseBlock, 1, 0), new Object[] {
+				"XXX",
+				"XZX",
+				"YYY",
+				'X',
+				new ItemStack(Blocks.glass),
+				'Y',
+				"ingotIron",
+				'Z',
+				new ItemStack(Blocks.carpet, 1, 32767) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(seasonsShopBlock, 1, 0), new Object[] { " X ", "XYX",
-				"XZX", 'X', new ItemStack(Items.iron_ingot), 'Y', new ItemStack(Blocks.quartz_block), 'Z',
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(seasonsShopBlock, 1, 0), new Object[] {
+				" X ",
+				"XYX",
+				"XZX",
+				'X',
+				new ItemStack(Items.iron_ingot),
+				'Y',
+				new ItemStack(Blocks.quartz_block),
+				'Z',
 				new ItemStack(Blocks.redstone_torch) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(seasonsShopBlock, 1, 0), new Object[] { " X ", "XYX",
-				"XZX", 'X', "ingotIron", 'Y', "blockQuartz", 'Z', new ItemStack(Blocks.redstone_torch) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(seasonsShopBlock, 1, 0), new Object[] {
+				" X ",
+				"XYX",
+				"XZX",
+				'X',
+				"ingotIron",
+				'Y',
+				"blockQuartz",
+				'Z',
+				new ItemStack(Blocks.redstone_torch) }));
 	}
 
 }
