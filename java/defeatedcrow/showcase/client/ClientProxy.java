@@ -1,5 +1,6 @@
 package defeatedcrow.showcase.client;
 
+import defeatedcrow.showcase.blocks.tileentity.TileClassicCustomShop;
 import defeatedcrow.showcase.common.ShowcaseConfig;
 import net.minecraft.world.World;
 
@@ -23,6 +24,8 @@ public class ClientProxy extends CommonProxy {
 	public void registerTileEntity() {
 		ClientRegistry.registerTileEntity(TileShowcase.class, "tileShowcase", new RenderShowCase());
 		ClientRegistry.registerTileEntity(TileSeasonShop.class, "tileSeasonShop", new RenderSeasonShop());
+		if (ShowcaseConfig.customShops)
+			ClientRegistry.registerTileEntity(TileClassicCustomShop.class, "tileClassicCustomShop", new RenderClassicCustomShop());
 	}
 
 	@Override

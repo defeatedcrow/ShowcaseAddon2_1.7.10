@@ -2,6 +2,7 @@ package defeatedcrow.showcase.blocks;
 
 import java.util.Random;
 
+import defeatedcrow.showcase.common.ShowcaseConfig;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -48,7 +49,7 @@ public class BlockSeasonShop extends BlockContainer {
 			TileEntity any = world.getTileEntity(x, y, z);
 			if (any instanceof TileSeasonShop) {
 				TileSeasonShop tile = (TileSeasonShop) any;
-				if (tile.hasEnergy() || !ShowcaseCore.SS2Loaded) {
+				if (tile.hasEnergy() || !(ShowcaseCore.SS2Loaded && ShowcaseConfig.requireGF)) {
 					int season = TimeUtil.getSeason(world);
 					switch (season) {
 					case 0:

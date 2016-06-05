@@ -1,6 +1,10 @@
 package defeatedcrow.showcase.blocks.tileentity;
 
-import defeatedcrow.showcase.common.ShowcaseConfig;
+import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import defeatedcrow.showcase.blocks.BlockCustomShopBase;
+import defeatedcrow.showcase.common.*;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -10,18 +14,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import defeatedcrow.showcase.common.ShowcaseCore;
-import defeatedcrow.showcase.common.TimeUtil;
 
 @Optional.InterfaceList({ @Optional.Interface(
 		iface = "shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler", modid = "SextiarySector") })
-public class TileSeasonShop extends TileEntity implements IGearForceHandler {
+public class TileCustomShopBase extends TileEntity implements IGearForceHandler {
 
 	protected Short currentGF = 0;
 	protected Short cooltime = 0;
+	protected String shop = "";
+	protected int mode = 0;
 	public final Short MAX_SPEED = 100;
 	public final Short MAX_POWER = 1;
 	public boolean active = false;
@@ -32,6 +33,8 @@ public class TileSeasonShop extends TileEntity implements IGearForceHandler {
 		this.currentGF = par1NBTTagCompound.getShort("CurrentGF");
 		this.cooltime = par1NBTTagCompound.getShort("CoolTime");
 		this.active = par1NBTTagCompound.getBoolean("Active");
+		this.shop = par1NBTTagCompound.getString("Shop");
+		this.mode = par1NBTTagCompound.getInteger("Mode");
 	}
 
 	@Override
@@ -40,6 +43,8 @@ public class TileSeasonShop extends TileEntity implements IGearForceHandler {
 		par1NBTTagCompound.setShort("CurrentGF", this.currentGF);
 		par1NBTTagCompound.setShort("CoolTime", this.cooltime);
 		par1NBTTagCompound.setBoolean("Active", this.active);
+		par1NBTTagCompound.setString("Shop", this.shop);
+		par1NBTTagCompound.setInteger("Mode", this.mode);
 	}
 
 	@Override
@@ -65,6 +70,33 @@ public class TileSeasonShop extends TileEntity implements IGearForceHandler {
 
 	public boolean hasEnergy() {
 		return currentGF > 0;
+	}
+
+	public String getShop() {
+		return shop;
+	}
+
+	public int getMode() {
+		return mode;
+	}
+
+	public void setShop(String shop) {
+		this.shop = shop;
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public IIcon getShopIcon() {
+		CustomShopData shopData = CustomShopManager.get(shop.equals("")?CustomShopData.DEFAULT:shop);
+		if ((shopData == null) || (shopData.item.screen == null) || (shopData.item.screen.failed)) {
+			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
+			return block.getIcon(0, 0);
+		} else {
+			return shopData.item.screen;
+		}
 	}
 
 	@Override
@@ -97,14 +129,10 @@ public class TileSeasonShop extends TileEntity implements IGearForceHandler {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	public IIcon getSeasoonIcon() {
-		int season = TimeUtil.getSeason(worldObj);
-		Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
-		return block.getIcon(0, season);
-	}
-
 	public boolean isActive() {
+		CustomShopData shopData = CustomShopManager.get(shop.equals("")?CustomShopData.DEFAULT:shop);
+		if (shopData == null)
+			return false;
 		return active || !(ShowcaseCore.SS2Loaded && ShowcaseConfig.requireGF);
 	}
 
